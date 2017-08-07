@@ -17,4 +17,5 @@ p. e1002888, 2013.
 
 ## INSTALLATION
 
-The manual provides an easy to follow installation procedure. [Manual](https://github.com/MichaelPHStumpf/Peitho/blob/master/docs/peitho-manual.pdf "PEITHO's manual")
+The manual provides an easy to follow installation procedure. 
+[Manual](https://github.com/MichaelPHStumpf/Peitho/raw/master/docs/peitho-manual.pdf "PEITHO's manual")
