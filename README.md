@@ -1,4 +1,4 @@
-# PEITHO - EXPERIMENTAL DESIGN
+# PEITHO - Perfecting Experiments with Information Theory
 
 ## MOTIVATION
 Different experiments provide differing levels of information about a biological system.
@@ -9,13 +9,13 @@ of experimental selection using information theory. PEITH(Θ) extends the work o
 et al. [1] giving users the capability to simulate a range of experiments and make a
 selection beyond guesswork.
 
-### REFERENCES
+## MANUAL
+
+The manual provides an easy to follow installation procedure, technical background information and detailed instructions on how to use PEITH(Θ).
+[manual](https://github.com/MichaelPHStumpf/Peitho/raw/master/docs/manual.pdf "PEITHO's manual")
+
+
+## REFERENCES
 
 [1] J. Liepe, S. Filippi, M. Komorowski, and M. P. Stumpf, “Maximizing the information content of experiments in systems biology,” PLoS Comput Biol, vol. 9, no. 1,
 p. e1002888, 2013.
-
-
-## INSTALLATION
-
-The manual provides an easy to follow installation procedure. 
-[Manual](https://github.com/MichaelPHStumpf/Peitho/raw/master/docs/manual.pdf "PEITHO's manual")
