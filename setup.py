@@ -1,10 +1,10 @@
 from setuptools import setup, find_packages
 
 setup(name='peitho',
-	version='0.1',
+	version='0.1.1',
 	description='Perfecting Experiments with Information Theory',
 	url='https://github.com/MichaelPHStumpf/Peitho',
-	download_url='https://github.com/MichaelPHStumpf/Peitho/archive/0.1.tar.gz',
+	download_url='https://github.com/MichaelPHStumpf/Peitho/archive/0.1.1.tar.gz',
 	author='Leander Dony, Scott Ward, Jonas Mackerodt, Juliane Liepe, Michael PH Stumpf',
 	author_email='m.stumpf@imperial.ac.uk',
 	license='MIT',
