@@ -1,4 +1,4 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 
 setup(name='peitho',
 	version='0.1',
@@ -8,7 +8,7 @@ setup(name='peitho',
 	author='Leander Dony, Scott Ward, Jonas Mackerodt, Juliane Liepe, Michael PH Stumpf',
 	author_email='m.stumpf@imperial.ac.uk',
 	license='MIT',
-	packages=['peitho'],
+	packages=find_packages(),
 	install_requires = [
 		'pycuda',
 		'numpy',
