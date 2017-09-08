@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(name='peitho',
-	version='0.1.1',
+	version='0.1.2',
 	description='Perfecting Experiments with Information Theory',
 	url='https://github.com/MichaelPHStumpf/Peitho',
 	download_url='https://github.com/MichaelPHStumpf/Peitho/archive/0.1.1.tar.gz',
@@ -9,6 +9,7 @@ setup(name='peitho',
 	author_email='m.stumpf@imperial.ac.uk',
 	license='MIT',
 	packages=find_packages(),
+	include_package_data=True,
 	install_requires = [
 		'pycuda',
 		'numpy',
