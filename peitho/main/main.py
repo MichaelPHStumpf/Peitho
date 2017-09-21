@@ -43,13 +43,15 @@ def main():
 			print "ERROR: Can only give an estimation of memory for one SBML or input XML file at a time for a = 0 or 1 and two files (one for the reference the other for experiments) when a = 2\n"
 			sys.exit()
 
+		#Set seed value based on user provided value
+		if seed_bool == True:
+			random.seed(seed.value)
+		
 		#If statement deals with whether we are doing 1st, 2nd or 3rd approach
 		if analysis != 2:
 			count = 0
 			#Cycles through the list of SBML and local code files
 			for i in range(0,len(input_file_SBMLs)):
-				#NEED TO REMOVE SEED
-				#random.seed(123)
 				#If statment between whether SBML or local code used as requires two different workflows
 				if usesbml[i]==True:
 					sorting_files(input_file_SBMLs[i],analysis,fname,usesbml[i], iname, input_file_data = input_file_datas[count], memory_check = memory_check)
@@ -62,7 +64,6 @@ def main():
 			#If statment between whether SBML or local code used as requires two different workflows
 			#Reference model
 			if usesbml[0] == True:
-				#random.seed(123) #NEED TO REMOVE SEED
 				ref_model = sorting_files(input_file_SBMLs[0],analysis,fname,usesbml[0], iname, input_file_data = input_file_datas[count], memory_check = memory_check)
 				count += 1
 			else:

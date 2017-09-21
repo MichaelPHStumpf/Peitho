@@ -1,5 +1,6 @@
 import sys
 import os
+import shutil
 
 # A function that prints the flag options when run in the command line
 ##(input_checker)
@@ -52,6 +53,15 @@ def input_checker(sys_arg):
 	input_file_data=[] #list containing associated input files for SBML files
 	template_creator=False
 	memory_check=False
+	
+	if (sys_arg[1]=="--example" or sys_arg[1]=="-ex"):
+	        example_out = sys_arg[2]
+        	if os.path.isdir(example_out):
+                	print "Folder already exists!\n"
+                	sys.exit()
+        	else:
+                	shutil.copytree(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))+"/example_data", example_out)
+                	sys.exit()
 
 	#For loop cycles over the command line arguments
 	for i in range(1,len(sys_arg)):
@@ -117,6 +127,18 @@ def input_checker(sys_arg):
 			elif option[0:9] == "infolder=":
 				iname = option[9:]
 				print "Input file destination: " + iname + "\n"
+
+			elif option == 'seed':
+				seed_bool = True
+				try:
+					seed_value = int(sys_arg[i+1])
+				except:
+					print "ERROR: Seed needs to be provided as an unsigned integer"
+					sys.exit()
+						
+
+
+
 			#If flag not recognised calls printOptions()
 			elif not(sys_arg[i-1][2:] == 'infile_SBML'):
 				print "\nERROR: unknown option "+sys_arg[i]
@@ -187,6 +209,15 @@ def input_checker(sys_arg):
 			elif option == 'mc':
 				memory_check=True
 
+			elif option == 'sd':
+				seed_bool = True
+				try:
+					seed_value = int(sys_arg[i+1])
+				except:
+					print "ERROR: Seed needs to be provided as an unsigned integer"
+					sys.exit()
+
+
 			#If an unrecognised flag is called and calls printOptions
 			elif not(sys_arg[i-1][2:] == 'i1'):
 				print "\nERROR: unknown option "+sys_arg[i]
@@ -213,4 +244,4 @@ def input_checker(sys_arg):
 	if not(os.path.isdir("./"+fname)):
 		os.mkdir(fname)
 
-	return input_file_SBML, input_file_data, analysis, fname, usesbml, iname, template_creator, memory_check
+	return input_file_SBML, input_file_data, analysis, fname, usesbml, iname, template_creator, memory_check, seed_bool, seed_value
