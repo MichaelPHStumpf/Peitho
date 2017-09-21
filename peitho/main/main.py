@@ -26,7 +26,7 @@ def main():
 	time3=time.time()
 
 	# Reads in command line arguments
-	input_file_SBMLs, input_file_datas, analysis, fname, usesbml, iname, template_creator, memory_check = error_check.input_checker(sys.argv)
+	input_file_SBMLs, input_file_datas, analysis, fname, usesbml, iname, template_creator, memory_check, seed_bool, seed_value = error_check.input_checker(sys.argv)
 
 	# Run program when in non template mode
 	if template_creator==False:
@@ -45,7 +45,7 @@ def main():
 
 		#Set seed value based on user provided value
 		if seed_bool == True:
-			random.seed(seed.value)
+			random.seed(seed_value)
 		
 		#If statement deals with whether we are doing 1st, 2nd or 3rd approach
 		if analysis != 2:

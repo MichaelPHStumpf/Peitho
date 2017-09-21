@@ -53,7 +53,9 @@ def input_checker(sys_arg):
 	input_file_data=[] #list containing associated input files for SBML files
 	template_creator=False
 	memory_check=False
-	
+	seed_bool = False
+	seed_value = 0	
+
 	if (sys_arg[1]=="--example" or sys_arg[1]=="-ex"):
 	        example_out = sys_arg[2]
         	if os.path.isdir(example_out):
@@ -209,7 +211,7 @@ def input_checker(sys_arg):
 			elif option == 'mc':
 				memory_check=True
 
-			elif option == 'sd':
+			elif option == 's':
 				seed_bool = True
 				try:
 					seed_value = int(sys_arg[i+1])
