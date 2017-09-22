@@ -24,20 +24,20 @@
 # Sigma
 <sigma> 0.1 </sigma>
 
-# Numbers of parameters defined in models below 
-<nparameters_all> 4 </nparameters_all> 
+# Numbers of parameters defined in models below
+<nparameters_all> 4 </nparameters_all>
 
-# Indicates if a initial conditions are provided as prior distributions 
+# Indicates if a initial conditions are provided as prior distributions
 <initialprior> False </initialprior>
 
-<paramfit> parameter3 </paramfit>
+<paramfit> parameter1 </paramfit>
 
 <initfit> None </initfit>
 
 <compfit> None </compfit>
 
 
-# Indicates if a sample from a posterior + associated weights are provided(1=True / 0=False) and the names of sample and weight file 
+# Indicates if a sample from a posterior + associated weights are provided(1=True / 0=False) and the names of sample and weight file
 <samplefrompost> False </samplefrompost>
 <samplefrompost_file>  </samplefrompost_file>
 <samplefrompost_weights>  </samplefrompost_weights>
@@ -48,8 +48,8 @@
 <experiments>
 <experiment1>
 <name> mRNA </name>
-<source> hess1.xml </source>
-<cuda> hess1.cu </cuda>
+<source> hes1.xml </source>
+<cuda> hes1.cu </cuda>
 <type> ODE </type>
 
 <measuredspecies> species1 </measuredspecies>
@@ -71,8 +71,8 @@
 
 <experiment2>
 <name> Protein </name>
-<source> hess1.xml </source>
-<cuda> hess1.cu </cuda>
+<source> hes1.xml </source>
+<cuda> hes1.cu </cuda>
 <type> ODE </type>
 
 <measuredspecies> species2+species3 </measuredspecies>

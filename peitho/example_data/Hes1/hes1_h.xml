@@ -48,8 +48,8 @@
 <experiments>
 <experiment1>
 <name> mRNA </name>
-<source> hess1.xml </source>
-<cuda> hess1.cu </cuda>
+<source> hes1.xml </source>
+<cuda> hes1.cu </cuda>
 <type> ODE </type>
 
 <measuredspecies> species1 </measuredspecies>
@@ -71,8 +71,8 @@
 
 <experiment2>
 <name> Protein </name>
-<source> hess1.xml </source>
-<cuda> hess1.cu </cuda>
+<source> hes1.xml </source>
+<cuda> hes1.cu </cuda>
 <type> ODE </type>
 
 <measuredspecies> species2+species3 </measuredspecies>

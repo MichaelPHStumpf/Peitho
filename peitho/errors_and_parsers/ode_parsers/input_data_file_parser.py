@@ -59,7 +59,7 @@ def generateTemplate(source, analysis_type, filename="input_file", dataname=None
 
 	"""
 
-	
+
 	####Determine if source SBML files defines models with same number of species and parameters#####
 	reader=libsbml.SBMLReader()
 
@@ -81,7 +81,7 @@ def generateTemplate(source, analysis_type, filename="input_file", dataname=None
 		nspecies_all = models_nspecies[0]
 
 	#################################################################################################
-	
+
 
 
 	####Open input xml file###################################################
@@ -111,8 +111,8 @@ def generateTemplate(source, analysis_type, filename="input_file", dataname=None
 	sigma_regex = re.compile(r'>sigma\n(.+)\n<sigma', re.DOTALL)
 	type_regex = re.compile(r'>type\s*\n(ODE|SDE)\s*\n<type')
 	#################################################################################################
-	
-	
+
+
 	##### regex for prior distribution error checks##################################################
 	prior_check_constant=re.compile(r'constant ((\d+\.\d+)|(\d+))')
 	prior_check_uniform=re.compile(r'uniform ((\d+\.\d+)|(\d+)) ((\d+\.\d+)|(\d+))')
@@ -137,7 +137,7 @@ def generateTemplate(source, analysis_type, filename="input_file", dataname=None
 
 	###Reads data file and assigns values to variables####################################
 	if template_creator == False and dataname!=None:
-		
+
 		data_file = open(iname+"/"+dataname, 'r')
 		info = data_file.read()
 		data_file.close()
@@ -161,14 +161,14 @@ def generateTemplate(source, analysis_type, filename="input_file", dataname=None
 			print "\n\nERROR: Please provide an integer value as number of particles: >particles ... <particles in input data file " + dataname +"!\n\n"
 			sys.exit()
 		##################################
-		
+
 		####obtain type of model (ODE/SDE)#####
 		try:
 			model_type=type_regex.search(info).group(1)
 		except:
 			print "\n\nERROR: The model type is not properly defined: >type ... <type in data file " + dataname +"!\n\n"
 			sys.exit()
-		#### SDE model message#################	
+		#### SDE model message#################
 		if model_type == "SDE":
 			print "\n\nWARNING: SDE models will be supported in future version!\n\n"
 			sys.exit()
@@ -186,12 +186,12 @@ def generateTemplate(source, analysis_type, filename="input_file", dataname=None
 		if len(set(times)) != len(times):
 			print "\n\nERROR: One or more timepoints are defined twice or more: >timepoints ... <timepoints in input data file " + dataname +"!\n\n"
 			sys.exit()
-		
+
 		### error check if timepoint are in ascending order ####
 		if sorted(times) != times:
 			print "\n\nERROR: Please provide a whitespace seperated list of float value in ascending order: >timepoints ... <timepoints in input data file " + dataname +"!\n\n"
 			sys.exit()
-		
+
 		####################################
 
 		#####obtain the numbers of N1, N2, N3 and N4####
@@ -206,7 +206,7 @@ def generateTemplate(source, analysis_type, filename="input_file", dataname=None
 		if analysis_type == 0:
 			if nsample[0]==0 or nsample[1]==0:
 				print "\n\nERROR: N1 and N2 can not be of size 0: >nsample ... <nsample in input data file " + dataname +"!\n\n"
-				sys.exit()				
+				sys.exit()
 			elif nsample[2]!=0 or nsample[3]!=0:
 				print "\n\nERROR: N3 and N4 must be of size 0: >nsample ... <nsample in input data file " + dataname +"!\n\n"
 				sys.exit()
@@ -223,8 +223,8 @@ def generateTemplate(source, analysis_type, filename="input_file", dataname=None
 				sys.exit()
 			elif nsample[0]+nsample[1]+nsample[2]!=particles:
 				print "\n\nERROR: Sum of samples N1, N2 and N3 is not equal to number of particle: >nsample ... <nsample in input data file " + dataname +"!\n\n"
-				sys.exit()		
-		
+				sys.exit()
+
 		elif analysis_type == 2:
 			if nsample[0]==0 or nsample[1]==0 or nsample[2]==0 or nsample[3]==0:
 				print "\n\nERROR: N1, N2, N3 and N4 can not be of size 0: >nsample ... <nsample in input data file " + dataname +"!\n\n"
@@ -245,8 +245,8 @@ def generateTemplate(source, analysis_type, filename="input_file", dataname=None
 
 		####Sample from posterior#######################################
 		'''
-		Reads if sample from posterior is provided and obtains the 
-		location of the files provided by the user containing the 
+		Reads if sample from posterior is provided and obtains the
+		location of the files provided by the user containing the
 		posterior sample and the associated weights.
 
 		'''
@@ -259,7 +259,7 @@ def generateTemplate(source, analysis_type, filename="input_file", dataname=None
 			samplefrompost = True
 			samplefrompost_samplefile=samplefrompost_match.group(3)
 			samplefrompost_weights=samplefrompost_match.group(4)
-			
+
 			#### Token values when sample from posterior is provided####
 			init_con= [["constant 1" for k in range(nspecies_all)]]
 			############################################################
@@ -291,7 +291,7 @@ def generateTemplate(source, analysis_type, filename="input_file", dataname=None
 		##when no sample from posterior is provided##
 		if samplefrompost == False:
 
-			####obtain prior distribution of model parameter	
+			####obtain prior distribution of model parameter
 			try:
 				prior = prior_regex.search(info).group(1).split("\n")
 			except:
@@ -345,7 +345,7 @@ def generateTemplate(source, analysis_type, filename="input_file", dataname=None
 					fit_init = "All"
 				####
 		#######################################################################################
-		
+
 
 		####obtain fit information for species####
 		try:
@@ -358,7 +358,7 @@ def generateTemplate(source, analysis_type, filename="input_file", dataname=None
 
 
 		####obtain fit information for parameters####
-		if analysis_type==1:		
+		if analysis_type==1:
 			try:
 				fitparam_list = fitparam_regex.search(info).group(1)
 				fit_param = fitparam_list
@@ -408,7 +408,7 @@ def generateTemplate(source, analysis_type, filename="input_file", dataname=None
 						comb.append([h,i,j])
 		else:
 			try:
-				comb = [[int(j)-1 for j in re.search(r'initset(\d+) paramexp(\d+) fit(\d+)', i).group(1,2,3)] for i in comb_list]
+				comb = [[int(j)-1 for j in re.search(r'initset(\d+) paramexp(\d+) measured(\d+)', i).group(1,2,3)] for i in comb_list]
 			except:
 				print "\n\nERROR: Combinations of initial conditions, parameter changes and species fit defining an experiment are not in the right format: >combination .... <combination in input data file " + dataname +"!\n\n"
 				sys.exit()
@@ -457,11 +457,11 @@ def generateTemplate(source, analysis_type, filename="input_file", dataname=None
 		out_file.write("<dt> 0.01 </dt>\n\n")
 
 	###################################################################################################################################
-	
+
 	out_file.write("######################## User-supplied data\n\n")
 	out_file.write("<data>\n")
 
-	####Writes timepoint for simulation output to input.xml file###########################################################################	
+	####Writes timepoint for simulation output to input.xml file###########################################################################
 	out_file.write("# times: For ABC SMC, times must be a whitespace delimited list\n")
 	out_file.write("# In simulation mode these are the timepoints for which the simulations will be output\n")
 	if (template_creator==False and times):
@@ -518,7 +518,7 @@ def generateTemplate(source, analysis_type, filename="input_file", dataname=None
 
 	####Writes the fit for parameters, initial condtions and compartments##############################################################
 	out_file.write("# Single or subset of parameters to be considered for calculation of mututal inforamtion:\n")
-		
+
 	out_file.write("<paramfit> ")
 	if template_creator==False:
 		out_file.write(fit_param)
@@ -548,7 +548,7 @@ def generateTemplate(source, analysis_type, filename="input_file", dataname=None
 		out_file.write("<samplefrompost> ")
 		out_file.write(repr(samplefrompost))
 		out_file.write(" </samplefrompost>\n")
-		
+
 		if samplefrompost == True:
 			out_file.write("<samplefrompost_file> " + samplefrompost_samplefile + " </samplefrompost_file>\n")
 			out_file.write("<samplefrompost_weights> " + samplefrompost_weights + " </samplefrompost_weights>\n\n")
@@ -562,7 +562,7 @@ def generateTemplate(source, analysis_type, filename="input_file", dataname=None
 	#######################################################################
 
 	out_file.write("</data>\n\n")
-	
+
 
 
 	####Experiments################################################################
@@ -592,7 +592,7 @@ def generateTemplate(source, analysis_type, filename="input_file", dataname=None
 			out_file.write("<measuredspecies> " + fit_species[comb[j][2]] + " </measuredspecies>\n\n");
 		elif template_creator==True:
 			out_file.write("<measuredspecies> All </measuredspecies>\n\n")
-		
+
 		####Open source file and obtain basic information about the model##################################################################
 		document=reader.readSBML(inpath+"/"+source[comb[j][1]])
 		model=document.getModel()
@@ -651,7 +651,7 @@ def generateTemplate(source, analysis_type, filename="input_file", dataname=None
 
 
 		paramAsSpecies=0
-		
+
 
 
 		###################################################################################################################################
@@ -740,7 +740,7 @@ def generateTemplate(source, analysis_type, filename="input_file", dataname=None
 					out_file.write("<parameter"+repr(counter)+"> ")
 					out_file.write(prior[k])
 					out_file.write(" </parameter" + repr(counter)+">\n")
-#					
+#
 			elif samplefrompost==True:
 				for k in range(models_nparameters[comb[j][1]]):
 					counter=counter+1
@@ -761,12 +761,12 @@ def generateTemplate(source, analysis_type, filename="input_file", dataname=None
 		out_file.write("</parameters>\n")
 		###################################################################################################################################
 
-		out_file.write("</experiment"+repr(j+1)+">\n\n") 
-		
+		out_file.write("</experiment"+repr(j+1)+">\n\n")
+
 
 	out_file.write("</experiments>\n\n")
 	out_file.write("</input>\n\n")
-	
+
 
 	#####Closes input xml file################################################################################################
 	out_file.close()
