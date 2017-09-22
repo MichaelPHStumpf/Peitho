@@ -57,13 +57,24 @@ def input_checker(sys_arg):
 	seed_value = 0	
 
 	if (sys_arg[1]=="--example" or sys_arg[1]=="-ex"):
-	        example_out = sys_arg[2]
-        	if os.path.isdir(example_out):
+	        if len(sys_arg) == 2:
+			exampple_out = "example_data"
+		elif len(sys_arg) == 3:
+			example_out = sys_arg[2]
+        	elif len(sys_arg) > 3:
+			print "Too many arguments provided to -ex/--example flag.\n"
+			sys.exit()
+
+		if os.path.isdir(example_out):
                 	print "Folder already exists!\n"
                 	sys.exit()
         	else:
-                	shutil.copytree(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))+"/example_data", example_out)
-                	sys.exit()
+                	try:
+				shutil.copytree(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))+"/example_data", example_out)
+                		sys.exit()
+			else:
+				print "Output folder was not properly defined.\n"
+				sys.exit()
 
 	#For loop cycles over the command line arguments
 	for i in range(1,len(sys_arg)):

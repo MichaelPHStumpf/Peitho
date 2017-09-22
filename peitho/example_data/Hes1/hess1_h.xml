@@ -24,10 +24,10 @@
 # Sigma
 <sigma> 0.1 </sigma>
 
-# Numbers of parameters defined in models below 
-<nparameters_all> 4 </nparameters_all> 
+# Numbers of parameters defined in models below
+<nparameters_all> 4 </nparameters_all>
 
-# Indicates if a initial conditions are provided as prior distributions 
+# Indicates if a initial conditions are provided as prior distributions
 <initialprior> False </initialprior>
 
 <paramfit> parameter2 </paramfit>
@@ -37,7 +37,7 @@
 <compfit> None </compfit>
 
 
-# Indicates if a sample from a posterior + associated weights are provided(1=True / 0=False) and the names of sample and weight file 
+# Indicates if a sample from a posterior + associated weights are provided(1=True / 0=False) and the names of sample and weight file
 <samplefrompost> False </samplefrompost>
 <samplefrompost_file>  </samplefrompost_file>
 <samplefrompost_weights>  </samplefrompost_weights>
